@@ -1,0 +1,14 @@
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    {{ posts }}
+        {{ partial:blog/card }}
+    {{ /posts }}
+</div>
+{{ paginate }}
+    {{ if prev_page || next_page }}
+    <nav class="flex justify-center items-center gap-6 pt-12 text-sm font-semibold">
+        {{ if prev_page }}<a href="{{ prev_page }}" class="text-[#5956E9] hover:underline">← Newer</a>{{ /if }}
+        {{ if next_page }}<a href="{{ next_page }}" class="text-[#5956E9] hover:underline">Older →</a>{{ /if }}
+    </nav>
+    {{ /if }}
+{{ /paginate }}
+

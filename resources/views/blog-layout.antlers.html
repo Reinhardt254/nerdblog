@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="{{ $site:short_locale }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ $title }} — {{ $settings:site_name }}</title>
+        {{ if $excerpt }}
+            <meta name="description" content="{{ $excerpt | entities }}">
+        {{ elseif $intro }}
+            <meta name="description" content="{{ $intro | strip_tags | entities }}">
+        {{ elseif $content }}
+            <meta name="description" content="{{ $content | strip_tags | entities }}">
+        {{ /if }}
+        {{ if $main_content }}
+        <script type="application/ld+json">
+            {
+              "@context": "https://schema.org/",
+              "@type": "BlogPosting",
+              "headline": "{{ $title | entities }}",
+              "author": {
+                "@type": "Person",
+                "name": "{{ ($author:name ?? 'ConvertLabs') | entities }}"
+              },
+              "datePublished": "{{ $date format='Y-m-d' }}",
+              "description": "{{ ($excerpt ?? $intro) | strip_tags | entities }}"
+            }
+        </script>
+        {{ /if }}
+        <link rel="stylesheet" href="{{ mix src='css/tailwind.css' }}">
+        <style>[x-cloak]{display:none!important}</style>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0W6E5DNXN3"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0W6E5DNXN3');
+        </script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="{{ mix src='/js/site.js' }}"></script>
+    </head>
+    <body class="min-h-screen bg-white text-gray-900 font-body leading-normal">
+        {{ partial:blog/nav }}
+        <main>
+            {{ $template_content }}
+        </main>
+        {{ partial:blog/footer }}
+        {{ partial:extras }}
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<section class="relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-600 via-violet-600 to-blue-700 text-white">
+    <div class="max-w-3xl mx-auto px-6 py-12 sm:py-14 text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3">Get expert tips in your inbox</h2>
+        <p class="text-blue-100 text-sm sm:text-base mb-8 max-w-xl mx-auto">Weekly insights for home service businesses. No spam.</p>
+        {{ nocache }}
+        {{ form:newsletter_signup }}
+            {{ if success }}
+                <p class="text-white font-medium">{{ success }}</p>
+            {{ else }}
+                {{ if errors }}
+                    <div class="mb-4 text-sm text-red-200">{{ errors }}{{ value }}<br>{{ /errors }}</div>
+                {{ /if }}
+                <div class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+                    <input type="email" name="email" required placeholder="Your email" class="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/60">
+                    <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
+                    <button type="submit" class="px-6 py-3 rounded-lg bg-gray-900 hover:bg-black font-semibold text-sm transition-colors">Subscribe</button>
+                </div>
+                <label class="mt-4 flex items-start justify-center gap-2 text-xs text-blue-100 text-left max-w-md mx-auto">
+                    <input type="checkbox" name="optin" required class="mt-0.5 shrink-0">
+                    <span>I agree to receive newsletters and accept the privacy statement.</span>
+                </label>
+            {{ /if }}
+        {{ /form:newsletter_signup }}
+        {{ /nocache }}
+    </div>
+</section>

@@ -1,0 +1,21 @@
+title: Settings
+data:
+  site_name: 'ConvertLabs Blog'
+  personality: formal
+  show_signup: true
+  social:
+    -
+      id: sbrK9Oaa
+      name: Twitter
+      url: 'https://twitter.com/convertlabs'
+      icon: site/social-icons/twitter.svg
+    -
+      id: a1qwvr0B
+      name: Facebook
+      url: 'https://www.facebook.com/groups/convertlabs'
+      icon: site/social-icons/facebook.svg
+    -
+      id: rydUnMXx
+      name: Email
+      url: 'mailto:hello@convertlabs.io'
+      icon: site/social-icons/email.svg

@@ -1,0 +1,119 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 lg:py-12">
+    <nav class="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2">
+            <li><a href="{{ $site:url }}" class="hover:text-[#5956E9]">Blog</a></li>
+            {{ if categories }}
+                <li aria-hidden="true">/</li>
+                <li><a href="{{ $site:url }}?category={{ categories:slug }}" class="hover:text-[#5956E9]">{{ categories:title }}</a></li>
+            {{ /if }}
+            <li aria-hidden="true">/</li>
+            <li class="text-gray-900 truncate max-w-[12rem] sm:max-w-md">{{ $title }}</li>
+        </ol>
+    </nav>
+
+    {{# Mobile: collapsible TOC + share #}}
+    <div class="lg:hidden mb-8 space-y-3" x-data="{ open: false }">
+        <button type="button" @click="open = !open" class="w-full flex items-center justify-between px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-sm font-medium text-gray-800">
+            <span>Contents &amp; share</span>
+            <svg class="w-5 h-5 transition-transform" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div x-show="open" x-cloak class="rounded-xl border border-gray-200 bg-white p-4 space-y-6">
+            <div>
+                <h2 class="text-xs font-semibold text-gray-900 uppercase tracking-wide mb-2">On this page</h2>
+                <nav id="article-toc-mobile" class="space-y-1 text-sm text-gray-600"></nav>
+            </div>
+            {{ partial:blog/share-block }}
+        </div>
+    </div>
+
+    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
+        <aside class="hidden lg:block lg:col-span-3">
+            <div class="sticky top-28 space-y-8">
+                <div class="rounded-2xl border border-gray-200 bg-gray-50/80 p-5">
+                    <h2 class="text-xs font-semibold text-gray-900 uppercase tracking-wide mb-3">On this page</h2>
+                    <nav id="article-toc" class="space-y-1 text-sm max-h-[50vh] overflow-y-auto pr-1"></nav>
+                </div>
+                {{ partial:blog/share-block }}
+            </div>
+        </aside>
+
+        <div class="lg:col-span-9">
+            <header class="max-w-3xl mb-8">
+                {{ if categories }}
+                    <a href="{{ $site:url }}?category={{ categories:slug }}" class="inline-block mb-4 px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-50 to-violet-50 text-blue-700 border border-blue-100">{{ categories:title }}</a>
+                {{ /if }}
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight leading-tight">{{ $title }}</h1>
+                <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                    {{ if author }}
+                        <div class="flex items-center gap-3">
+                            <img src="{{ author:avatar ?? author:email | gravatar(96) }}" alt="" class="w-11 h-11 rounded-full border border-gray-200" width="44" height="44">
+                            <div>
+                                <a href="/authors/{{ author:handle }}" class="font-semibold text-gray-900 hover:text-[#5956E9]">{{ author:name }}</a>
+                            </div>
+                        </div>
+                    {{ /if }}
+                    <time datetime="{{ date format='Y-m-d' }}">{{ date format="F j, Y" }}</time>
+                    {{ if main_content }}
+                        <span class="text-gray-400">·</span>
+                        <span>{{ main_content | read_time(180) }} min read</span>
+                    {{ /if }}
+                </div>
+            </header>
+
+            {{ if hero_image }}
+                <div class="mb-10 rounded-2xl overflow-hidden border border-gray-100 shadow-sm max-w-3xl">
+                    <img src="{{ hero_image }}" alt="{{ hero_image:alt ?? title }}" class="w-full h-auto object-cover" loading="eager">
+                </div>
+            {{ /if }}
+
+            <div id="article-body" class="max-w-3xl prose prose-lg prose-gray prose-headings:scroll-mt-28 prose-a:text-[#5956E9]">
+                {{ main_content }}
+                    {{ if $type == "text" }}
+                        {{ $text }}
+                    {{ elseif $type == "code_block" }}
+<pre class="language-{{ $mode ?? 'php' }} rounded-lg border border-gray-200 bg-gray-900 text-gray-100 overflow-x-auto text-sm"><code>{{ $code }}</code></pre>
+                    {{ elseif $type == "image" }}
+                        <figure>
+                            <img src="{{ $image }}" alt="{{ $caption }}" loading="lazy" />
+                            {{ if $caption }}<figcaption class="text-sm text-gray-500">{{ $caption }}</figcaption>{{ /if }}
+                        </figure>
+                    {{ /if }}
+                {{ /main_content }}
+            </div>
+
+            {{ if tags }}
+            <div class="max-w-3xl mt-10 flex flex-wrap gap-2">
+                {{ tags }}
+                    <a href="{{ $site:url }}?tag={{ slug }}" class="px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200 transition-colors">{{ title }}</a>
+                {{ /tags }}
+            </div>
+            {{ /if }}
+
+            <section class="max-w-5xl mt-16 pt-12 border-t border-gray-200">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900">You may also like</h2>
+                    <div class="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent ml-6 hidden sm:block"></div>
+                </div>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {{ if categories }}
+                        {{ collection:blog taxonomy:categories:any="{categories:slug}" id:not="{id}" sort="date:desc" limit="3" as="related" }}
+                            {{ related }}
+                                {{ partial:blog/card }}
+                            {{ /related }}
+                        {{ /collection:blog }}
+                    {{ else }}
+                        {{ collection:blog id:not="{id}" sort="date:desc" limit="3" as="related" }}
+                            {{ related }}
+                                {{ partial:blog/card }}
+                            {{ /related }}
+                        {{ /collection:blog }}
+                    {{ /if }}
+                </div>
+            </section>
+
+            <div class="max-w-3xl mx-auto mt-16">
+                {{ partial:blog/article-final-cta }}
+            </div>
+        </div>
+    </div>
+</div>

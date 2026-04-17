@@ -1,0 +1,19 @@
+{{ items }}
+<a href="{{ url }}" class="group flex flex-col sm:flex-row bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg hover:border-blue-200 transition-all">
+    <div class="sm:w-72 shrink-0 relative">
+        {{ if hero_image }}
+            <img src="{{ glide:hero_image width="640" height="400" fit="crop_focal" }}" alt="{{ hero_image:alt ?? title }}" class="w-full h-48 sm:h-full sm:min-h-[160px] object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+        {{ else }}
+            <div class="w-full h-48 sm:min-h-[160px] bg-gradient-to-br from-gray-100 to-gray-200"></div>
+        {{ /if }}
+    </div>
+    <div class="flex-1 p-5 sm:p-6 flex flex-col justify-center">
+        <h3 class="text-lg sm:text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{{ title }}</h3>
+        <p class="text-gray-600 text-sm mt-2 line-clamp-2">{{ excerpt ?? intro | strip_tags | truncate:160 }}</p>
+        <div class="flex items-center gap-3 mt-4 text-xs text-gray-500">
+            <time datetime="{{ date format='Y-m-d' }}">{{ date }}</time>
+            {{ if author }}<span>{{ author:name }}</span>{{ /if }}
+        </div>
+    </div>
+</a>
+{{ /items }}

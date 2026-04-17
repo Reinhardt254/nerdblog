@@ -1,0 +1,49 @@
+<footer class="bg-gray-900 text-gray-300 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-16">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-10">
+            <div>
+                <div class="flex items-center mb-4">
+                    <img src="https://convertlabs.io/assets/landing/image/logo-main-black.png" alt="{{ $settings:site_name }}" class="h-7 brightness-0 invert">
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Expert guides and practical strategies for home service success.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wide">Categories</h4>
+                <ul class="space-y-2 text-sm">
+                    {{ taxonomy:categories sort="title" }}
+                        <li>
+                            <a href="{{ $site:url }}?category={{ $slug }}" class="hover:text-white transition-colors">{{ $title }}</a>
+                        </li>
+                    {{ /taxonomy:categories }}
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wide">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="https://convertlabs.io" class="hover:text-white transition-colors">About</a></li>
+                    <li><a href="https://convertlabs.io" class="hover:text-white transition-colors">Services</a></li>
+                    <li><a href="https://convertlabs.io#contact" class="hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4 text-sm uppercase tracking-wide">Follow</h4>
+                <div class="flex flex-wrap gap-3">
+                    {{ settings:social }}
+                        <a href="{{ url }}" class="hover:text-white transition-colors" aria-label="{{ name }}" rel="noopener">
+                            {{ svg :src="icon" class="h-6 w-6" }}
+                        </a>
+                    {{ /settings:social }}
+                </div>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+            <p>&copy; {{ $now format="Y" }} {{ $settings:site_name }}. All rights reserved.</p>
+            <div class="flex flex-wrap items-center justify-center gap-4 md:gap-6">
+                <a href="https://convertlabs.io/privacy" class="hover:text-white transition-colors">Privacy</a>
+                <a href="https://convertlabs.io/terms" class="hover:text-white transition-colors">Terms</a>
+            </div>
+        </div>
+    </div>
+</footer>

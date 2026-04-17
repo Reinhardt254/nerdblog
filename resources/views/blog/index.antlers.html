@@ -1,0 +1,203 @@
+<div class="min-h-screen bg-white">
+    {{# Hero #}}
+    <section class="relative overflow-hidden border-b border-gray-100 bg-gradient-to-br from-blue-50 via-violet-50 to-white">
+        <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:py-20">
+            <div class="grid items-center gap-10 md:grid-cols-2 md:gap-12">
+                <div class="space-y-6">
+                    <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+                        Transform your
+                        <span class="text-transparent bg-gradient-to-r from-blue-600 via-violet-600 to-blue-600 bg-clip-text"> cleaning business</span>
+                    </h1>
+                    <p class="max-w-xl text-lg leading-relaxed text-gray-600 md:text-xl">
+                        Expert strategies and practical tools from the ConvertLabs team.
+                    </p>
+                    <div class="max-w-lg p-5 bg-white border border-gray-200 shadow-lg rounded-2xl sm:p-6">
+                        <h2 class="mb-1 text-base font-bold text-gray-900">Get expert tips</h2>
+                        <p class="mb-4 text-sm text-gray-600">Subscribe for weekly insights.</p>
+                        {{ nocache }}
+                        {{ form:newsletter_signup }}
+                            {{ if ! success }}
+                                {{ if errors }}<div class="mb-2 text-sm text-red-600">{{ errors }}{{ value }} {{ /errors }}</div>{{ /if }}
+                                <div class="flex flex-col gap-2 sm:flex-row">
+                                    <input type="email" name="email" required placeholder="Email" class="flex-1 px-3 py-2.5 rounded-lg border border-gray-200 text-gray-900 text-sm focus:border-[#5956E9] focus:ring-2 focus:ring-[#5956E9]/20 outline-none">
+                                    <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
+                                    <button type="submit" class="px-5 py-2.5 bg-[#5956E9] text-white rounded-lg text-sm font-semibold hover:bg-[#4845d6]">Subscribe</button>
+                                </div>
+                                <label class="flex items-start gap-2 mt-3 text-xs text-gray-500">
+                                    <input type="checkbox" name="optin" required class="mt-0.5">
+                                    <span>I agree to receive emails and accept the privacy statement.</span>
+                                </label>
+                            {{ /if }}
+                        {{ /form:newsletter_signup }}
+                        {{ /nocache }}
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="overflow-hidden shadow-2xl rounded-2xl">
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1080&q=80" alt="Professional cleaning" class="w-full h-[420px] object-cover" width="1080" height="420" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{# Filters #}}
+    <section class="bg-white border-b border-gray-100">
+        <div class="px-4 py-6 mx-auto space-y-5 max-w-7xl sm:px-6">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                <div class="flex flex-wrap gap-2">
+                    <a href="{{ $site:url }}" class="px-4 py-2 rounded-full text-sm font-medium transition-colors {{ if get:category }}bg-gray-100 text-gray-700 hover:bg-gray-200{{ elseif get:tag }}bg-gray-100 text-gray-700 hover:bg-gray-200{{ else }}bg-[#5956E9] text-white{{ /if }}">All articles</a>
+                    {{ taxonomy:categories sort="title" }}
+                        <a href="{{ $site:url }}?category={{ $slug }}{{ if get:tag }}&amp;tag={{ get:tag }}{{ /if }}{{ if get:sort == 'popular' }}&amp;sort=popular{{ /if }}" class="px-4 py-2 rounded-full text-sm font-medium transition-colors {{ if get:category == $slug }}bg-[#5956E9] text-white{{ else }}bg-gray-100 text-gray-700 hover:bg-gray-200{{ /if }}">{{ $title }}</a>
+                    {{ /taxonomy:categories }}
+                </div>
+                <form action="/search" method="get" class="w-full lg:max-w-sm shrink-0">
+                    <label class="block mb-1 text-xs font-medium text-gray-600">Search articles</label>
+                    <div class="relative">
+                        <svg class="absolute w-4 h-4 text-gray-400 -translate-y-1/2 pointer-events-none left-3 top-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        <input type="search" name="q" class="w-full pl-10 pr-3 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:border-[#5956E9] focus:ring-2 focus:ring-[#5956E9]/20 outline-none" placeholder="Search topics…">
+                    </div>
+                </form>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+                <span class="text-xs tracking-wide text-gray-500 uppercase shrink-0">Tags</span>
+                {{ taxonomy:tags sort="title" limit="16" }}
+                    <a href="{{ $site:url }}?tag={{ $slug }}{{ if get:category }}&amp;category={{ get:category }}{{ /if }}{{ if get:sort == 'popular' }}&amp;sort=popular{{ /if }}" class="px-3 py-1 rounded-full text-xs font-medium border transition-colors {{ if get:tag == $slug }}border-[#5956E9] bg-violet-50 text-[#5956E9]{{ else }}border-gray-200 text-gray-600 hover:border-gray-300{{ /if }}">{{ $title }}</a>
+                {{ /taxonomy:tags }}
+            </div>
+            <div class="flex flex-wrap items-center gap-3 text-sm">
+                <span class="text-gray-500">Sort</span>
+                <a href="{{ $site:url }}{{ if get:category }}?category={{ get:category }}{{ if get:tag }}&amp;tag={{ get:tag }}{{ /if }}{{ elseif get:tag }}?tag={{ get:tag }}{{ /if }}" class="px-3 py-1.5 rounded-full font-medium {{ if get:sort != 'popular' }}bg-[#5956E9] text-white{{ else }}bg-gray-100 text-gray-700 hover:bg-gray-200{{ /if }}">Latest</a>
+                <a href="{{ $site:url }}?sort=popular{{ if get:category }}&amp;category={{ get:category }}{{ /if }}{{ if get:tag }}&amp;tag={{ get:tag }}{{ /if }}" class="px-3 py-1.5 rounded-full font-medium {{ if get:sort == 'popular' }}bg-[#5956E9] text-white{{ else }}bg-gray-100 text-gray-700 hover:bg-gray-200{{ /if }}">Popular</a>
+            </div>
+        </div>
+    </section>
+
+    {{# Featured (only unfiltered, not popular-only view) #}}
+    {{ if get:sort != "popular" }}{{ unless get:category }}{{ unless get:tag }}
+        {{ collection:blog featured:is="true" sort="date:desc" limit="3" as="featured_posts" }}
+        <section class="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:py-16">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">Featured</h2>
+                <div class="flex-1 hidden h-px ml-6 bg-gradient-to-r from-gray-200 to-transparent sm:block"></div>
+            </div>
+            <div class="grid gap-6 md:grid-cols-2 md:gap-8">
+                {{ featured_posts }}
+                    {{ if $first }}
+                        <a href="{{ url }}" class="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 min-h-[300px] md:min-h-[460px] flex flex-col justify-end p-8 md:p-10 hover:shadow-2xl transition-shadow">
+                            {{ if hero_image }}
+                                <img src="{{ glide:hero_image width="1200" height="800" fit="crop_focal" }}" alt="{{ hero_image:alt ?? title }}" class="absolute inset-0 object-cover w-full h-full transition-all duration-700 opacity-40 group-hover:opacity-50 group-hover:scale-105" loading="lazy">
+                            {{ /if }}
+                            <div class="relative z-10 space-y-3">
+                                <span class="inline-block px-3 py-1 text-xs font-medium text-white rounded-full bg-blue-500/90">Featured</span>
+                                <h3 class="text-2xl font-bold leading-tight text-white transition-colors md:text-3xl group-hover:text-blue-200">{{ title }}</h3>
+                                <p class="text-sm text-gray-300 md:text-base line-clamp-3">{{ excerpt ?? intro | strip_tags | truncate:180 }}</p>
+                            </div>
+                        </a>
+                    {{ else }}
+                        <a href="{{ url }}" class="flex flex-col h-full p-6 transition-all border border-gray-200 group rounded-3xl bg-gradient-to-br from-blue-50 to-violet-50 hover:shadow-xl hover:border-blue-200">
+                            {{ if hero_image }}
+                                <img src="{{ glide:hero_image width="800" height="400" fit="crop_focal" }}" alt="{{ hero_image:alt ?? title }}" class="w-full h-44 object-cover rounded-2xl mb-4 group-hover:scale-[1.02] transition-transform" loading="lazy">
+                            {{ /if }}
+                            <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600">{{ title }}</h3>
+                            <p class="mt-2 text-sm text-gray-600 line-clamp-2">{{ excerpt ?? intro | strip_tags | truncate:120 }}</p>
+                        </a>
+                    {{ /if }}
+                {{ /featured_posts }}
+            </div>
+        </section>
+        {{ /collection:blog }}
+    {{ /unless }}{{ /unless }}{{ /if }}
+ 
+    {{# Popular horizontal strip #}}
+    {{ if get:sort != 'popular' }}
+        <section class="py-10 border-gray-100 bg-gradient-to-br from-gray-50 to-white md:py-14 border-y">
+            <div class="px-4 mx-auto max-w-7xl sm:px-6">
+                <h2 class="mb-6 text-xl font-bold text-gray-900 md:text-2xl">Popular posts</h2>
+                <div class="grid gap-4">
+                    {{ if get:category }}
+                        {{ if get:tag }}
+                        {{ collection:blog as="pop" popular:is="true" sort="date:desc" limit="4" taxonomy:categories:any="{get:category}" taxonomy:tags:any="{get:tag}" }}
+                            {{ partial:blog/card-row :items="pop" }}
+                        {{ /collection:blog }}
+                        {{ else }}
+                        {{ collection:blog as="pop" popular:is="true" sort="date:desc" limit="4" taxonomy:categories:any="{get:category}" }}
+                            {{ partial:blog/card-row :items="pop" }}
+                        {{ /collection:blog }}
+                        {{ /if }}
+                    {{ elseif get:tag }}
+                        {{ collection:blog as="pop" popular:is="true" sort="date:desc" limit="4" taxonomy:tags:any="{get:tag}" }}
+                            {{ partial:blog/card-row :items="pop" }}
+                        {{ /collection:blog }}
+                    {{ else }}
+                        {{ collection:blog as="pop" popular:is="true" sort="date:desc" limit="4" }}
+                            {{ partial:blog/card-row :items="pop" }}
+                        {{ /collection:blog }}
+                    {{ /if }}
+                </div>
+            </div>
+        </section>
+    {{ /if }}
+
+    {{# Paginated grid #}}
+    <section class="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:py-16">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
+                {{ if get:sort == 'popular' }}Popular articles
+                {{ elseif get:category }}{{ get:category | replace('-', ' ') | title }}
+                {{ elseif get:tag }}{{ get:tag | replace('-', ' ') | title }}
+                {{ else }}Latest articles{{ /if }}
+            </h2>
+            <div class="flex-1 hidden h-px ml-6 bg-gradient-to-r from-gray-200 to-transparent sm:block"></div>
+        </div>
+
+        {{ if get:category }}
+            {{ if get:tag }}
+            {{ collection:blog as="posts" paginate="12" sort="date:desc" taxonomy:categories:any="{get:category}" taxonomy:tags:any="{get:tag}" }}
+                {{ partial:blog/post-grid }}
+            {{ /collection:blog }}
+            {{ else }}
+            {{ collection:blog as="posts" paginate="12" sort="date:desc" taxonomy:categories:any="{get:category}" }}
+                {{ partial:blog/post-grid }}
+            {{ /collection:blog }}
+            {{ /if }}
+        {{ elseif get:tag }}
+            {{ collection:blog as="posts" paginate="12" sort="date:desc" taxonomy:tags:any="{get:tag}" }}
+                {{ partial:blog/post-grid }}
+            {{ /collection:blog }}
+        {{ elseif get:sort == 'popular' }}
+            {{ collection:blog as="posts" paginate="12" sort="date:desc" popular:is="true" }}
+                {{ partial:blog/post-grid }}
+            {{ /collection:blog }}
+        {{ else }}
+            {{ collection:blog as="posts" paginate="12" sort="date:desc" }}
+                {{ partial:blog/post-grid }}
+            {{ /collection:blog }}
+        {{ /if }}
+    </section>
+
+    <section class="px-4 pb-16 mx-auto max-w-7xl sm:px-6">
+        <div class="relative overflow-hidden rounded-2xl">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-violet-600 to-blue-700"></div>
+            <div class="relative max-w-2xl px-6 mx-auto text-center text-white py-14">
+                <h2 class="mb-3 text-2xl font-bold md:text-3xl">Never miss a playbook</h2>
+                <p class="mb-6 text-sm text-blue-100 md:text-base">Join home service operators who read our weekly field notes.</p>
+                {{ nocache }}
+                {{ form:newsletter_signup }}
+                    {{ if ! success }}
+                        <div class="flex flex-col max-w-md gap-2 mx-auto sm:flex-row">
+                            <input type="email" name="email" required placeholder="Email address" class="flex-1 px-4 py-3 text-sm text-gray-900 rounded-full">
+                            <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
+                            <button type="submit" class="px-6 py-3 text-sm font-semibold bg-gray-900 rounded-full hover:bg-black">Subscribe</button>
+                        </div>
+                        <label class="flex items-start justify-center max-w-md gap-2 mx-auto mt-3 text-xs text-left text-blue-100">
+                            <input type="checkbox" name="optin" required class="mt-0.5">
+                            <span>I agree to receive emails and accept the privacy statement.</span>
+                        </label>
+                    {{ /if }}
+                {{ /form:newsletter_signup }}
+                {{ /nocache }}
+            </div>
+        </div>
+    </section>
+</div>
