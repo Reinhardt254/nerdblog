@@ -1,10 +1,4 @@
-<section class="p-3 text-center border-2 border-gray-200 bg-gradient-to-br from-gray-50 to-white rounded-3xl">
-    <div class="max-w-3xl px-6 py-12 mx-auto text-center sm:py-14">
-        <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 text-blue-600 bg-blue-100 rounded-full"><span class="relative flex w-2 h-2"><span class="absolute inline-flex w-full h-full bg-blue-400 rounded-full opacity-75 animate-ping"></span><span class="relative inline-flex w-2 h-2 bg-blue-600 rounded-full"></span></span><span class="text-sm font-medium">Join Our Newsletter</span></div>
-        <h2 class="mb-4 text-3xl font-bold text-gray-900">Don't Miss Our Next Article</h2>
-        <p class="mb-6 font-[400] text-gray-600">Get weekly insights, case studies, and strategies delivered to your inbox. Join 10,000+ marketers.</p>
-        {{ nocache }}
-        {{ form:newsletter_signup }}
+9999999999O:43:"Statamic\StaticCaching\NoCache\StringRegion":4:{s:3:"key";s:40:"731d98dae57803644ab0ea7c058347fc0e11ccf7";s:7:"context";a:4:{s:16:"current_template";s:9:"blog/show";s:14:"current_layout";s:11:"blog-layout";s:4:"view";a:0:{}s:4:"slot";N;}s:7:"content";s:1245:"{{ form:newsletter_signup }}
             {{ if success }}
                 <p class="font-medium text-white">{{ success }}</p>
             {{ else }}
@@ -20,7 +14,4 @@
                     <p class="mt-3 text-sm text-gray-500">No spam. Unsubscribe anytime.</p>
                 </div>
             {{ /if }}
-        {{ /form:newsletter_signup }}
-        {{ /nocache }}
-    </div>
-</section>
+        {{ /form:newsletter_signup }}";s:9:"extension";s:12:"antlers.html";}

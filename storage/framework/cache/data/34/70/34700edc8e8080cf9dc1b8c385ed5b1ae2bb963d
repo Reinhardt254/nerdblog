@@ -1,0 +1,10 @@
+9999999999O:43:"Statamic\StaticCaching\NoCache\StringRegion":4:{s:3:"key";s:40:"5ed22b285314c7344e7d1e7ab4b5c62d61595237";s:7:"context";a:3:{s:16:"current_template";s:10:"blog.index";s:14:"current_layout";s:11:"blog-layout";s:4:"view";a:0:{}}s:7:"content";s:985:"{{ form:newsletter_signup }}
+                            {{ if ! success }}
+                                <div class="flex gap-3">
+                                    <input type="email" name="email" required placeholder="Enter your email" class="flex-1 px-6 py-4 font-normal text-gray-900 rounded-full outline-none bg-white/95 backdrop-blur-sm placeholder:text-gray-500 focus:ring-2 focus:ring-white/50">
+                                    <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
+                                    <button type="submit" class="px-8 py-4 font-semibold text-white transition-colors bg-gray-900 rounded-full hover:bg-gray-800 whitespace-nowrap">Subscribe</button>
+                                </div>
+                                <p class="mt-4 text-sm font-normal text-blue-100">No spam, unsubscribe anytime. We respect your privacy.</p>
+                            {{ /if }}
+                        {{ /form:newsletter_signup }}";s:9:"extension";s:12:"antlers.html";}

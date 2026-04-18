@@ -255,27 +255,35 @@
         {{ /if }}
     </section>
  
-    <section class="px-4 pb-16 mx-auto max-w-7xl sm:px-6">
-        <div class="relative overflow-hidden rounded-2xl">
+    <section class="w-screen p-0 mx-auto max-w-screen">
+        <div class="relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-violet-600 to-blue-700"></div>
-            <div class="relative max-w-2xl px-6 mx-auto text-center text-white py-14">
-                <h2 class="mb-3 text-2xl font-bold md:text-3xl">Never miss a playbook</h2>
-                <p class="mb-6 text-sm text-blue-100 md:text-base">Join home service operators who read our weekly field notes.</p>
-                {{ nocache }}
-                {{ form:newsletter_signup }}
-                    {{ if ! success }}
-                        <div class="flex flex-col max-w-md gap-2 mx-auto sm:flex-row">
-                            <input type="email" name="email" required placeholder="Email address" class="flex-1 px-4 py-3 text-sm text-gray-900 rounded-full">
-                            <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
-                            <button type="submit" class="px-6 py-3 text-sm font-semibold bg-gray-900 rounded-full hover:bg-black">Subscribe</button>
-                        </div>
-                        <label class="flex items-start justify-center max-w-md gap-2 mx-auto mt-3 text-xs text-left text-blue-100">
-                            <input type="checkbox" name="optin" required class="mt-0.5">
-                            <span>I agree to receive emails and accept the privacy statement.</span>
-                        </label>
-                    {{ /if }}
-                {{ /form:newsletter_signup }}
-                {{ /nocache }}
+            <div class="relative max-w-4xl px-6 py-20 mx-auto text-center">
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 border rounded-full bg-white/20 backdrop-blur-sm border-white/30">
+                        <span class="relative flex w-2 h-2">
+                            <span class="absolute inline-flex w-full h-full bg-white rounded-full opacity-75 animate-ping"></span>
+                            <span class="relative inline-flex w-2 h-2 bg-white rounded-full"></span>
+                        </span>
+                        <span class="text-sm font-medium text-white">Join 10,000+ home service professionals</span>
+                    </div>
+                    <h2 class="text-4xl font-extrabold leading-tight text-white md:text-5xl lg:text-6xl">Get Expert Cleaning Tips &amp; Strategies</h2>
+                    <p class="max-w-2xl mx-auto text-xl font-normal text-blue-100 md:text-2xl">Subscribe to receive weekly insights, checklists, and exclusive guides directly to your inbox.</p>
+                    <div class="max-w-md mx-auto">
+                        {{ nocache }}
+                        {{ form:newsletter_signup }}
+                            {{ if ! success }}
+                                <div class="flex gap-3">
+                                    <input type="email" name="email" required placeholder="Enter your email" class="flex-1 px-6 py-4 font-normal text-gray-900 rounded-full outline-none bg-white/95 backdrop-blur-sm placeholder:text-gray-500 focus:ring-2 focus:ring-white/50">
+                                    <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
+                                    <button type="submit" class="px-8 py-4 font-semibold text-white transition-colors bg-gray-900 rounded-full hover:bg-gray-800 whitespace-nowrap">Subscribe</button>
+                                </div>
+                                <p class="mt-4 text-sm font-normal text-blue-100">No spam, unsubscribe anytime. We respect your privacy.</p>
+                            {{ /if }}
+                        {{ /form:newsletter_signup }}
+                        {{ /nocache }}
+                    </div>
+                </div>
             </div>
         </div>
     </section>
