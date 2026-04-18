@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["php84", "php84Extensions.mbstring", "php84Extensions.xml", "php84Extensions.curl", "php84Extensions.zip", "php84Extensions.gd", "php84Extensions.pdo", "php84Packages.composer", "nodejs_22"]
+nixPkgs = ["php84", "php84Extensions.mbstring", "php84Extensions.xml", "php84Extensions.curl", "php84Extensions.zip", "php84Extensions.gd", "php84Extensions.pdo", "php84Extensions.fileinfo", "php84Extensions.exif", "php84Extensions.openssl", "php84Packages.composer", "nodejs_22", "nginx"]
 
 [phases.install]
 cmds = ["rm -f package-lock.json", "composer install --optimize-autoloader --no-dev", "npm install"]
@@ -9,6 +9,7 @@ cmds = [
     "npm run build",
     "mkdir -p storage/framework/{sessions,views,cache,testing} storage/logs bootstrap/cache",
     "mkdir -p storage/app/glide_cache",
+    "mkdir -p storage/statamic/glide",
     "chmod -R a+rw storage",
     "touch database/database.sqlite",
     "php artisan migrate --force",
@@ -24,4 +25,4 @@ cmds = [
 ]
 
 [start]
-cmd = "php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"
+cmd = "mkdir -p storage/app/glide_cache storage/statamic/glide storage/framework/cache && chmod -R a+rw storage && php artisan statamic:stache:warm && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"

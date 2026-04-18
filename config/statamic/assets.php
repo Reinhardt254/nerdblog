@@ -67,8 +67,8 @@ return [
         |
         */
 
-        'cache' => false,
-        'cache_path' => public_path('img'),
+        'cache' => true,
+        'cache_path' => storage_path('app/glide_cache'),
 
         /*
         |--------------------------------------------------------------------------

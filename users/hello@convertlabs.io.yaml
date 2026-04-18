@@ -1,0 +1,19 @@
+name: ConvertLabs
+super: true
+id: 976ad664-1ad6-497a-a6ab-20b742c6f385
+password_hash: $2y$10$VFoXtmQGaBt9vK.kYKkpZ.arvfGk7KdK1r864UJFs7YrCnGZtekWm
+preferences:
+  nav:
+    top_level:
+      'content::collections::blog': '@move'
+      'content::collections::pages': '@move'
+    content:
+      'content::navigation': '@hide'
+      'content::taxonomies': '@hide'
+    fields: '@hide'
+  forms:
+    newsletter_signup:
+      columns:
+        - datestamp
+        - email
+        - optin
