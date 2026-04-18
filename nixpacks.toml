@@ -8,6 +8,7 @@ cmds = ["rm -f package-lock.json", "composer install --optimize-autoloader --no-
 cmds = [
     "npm run build",
     "mkdir -p storage/framework/{sessions,views,cache,testing} storage/logs bootstrap/cache",
+    "mkdir -p storage/app/glide_cache",
     "chmod -R a+rw storage",
     "touch database/database.sqlite",
     "php artisan migrate --force",
