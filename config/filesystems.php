@@ -64,7 +64,12 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-
+        'glide_cache' => [
+            'driver' => 'local',
+            'root' => storage_path('app/glide_cache'),
+            'visibility' => 'public',
+            'throw' => false,
+        ],
     ],
 
     /*
