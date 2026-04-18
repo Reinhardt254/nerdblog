@@ -37,3 +37,16 @@ sections:
           type: assets
           max_files: 1
           container: assets
+      -
+        handle: bio
+        field:
+          type: textarea
+          display: Bio
+          instructions: 'Shown in the “About the author” box on blog posts.'
+      -
+        handle: twitter
+        field:
+          type: text
+          input: url
+          display: Twitter / X profile URL
+          instructions: 'Optional link for “Follow on Twitter” on blog posts.'

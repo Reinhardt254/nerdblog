@@ -7,6 +7,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/tailwind.css',
+                'resources/css/site.css',
                 'resources/js/site.js',
 
                 // Control Panel assets.

@@ -1,0 +1,9 @@
+{{#
+    Estimated read time (words per minute = 180, Statamic default style).
+    Uses main_content when present, otherwise intro.
+#}}
+{{ if main_content }}
+    {{ main_content | read_time(180) }} min read
+{{ elseif intro }}
+    {{ intro | read_time(180) }} min read
+{{ /if }}

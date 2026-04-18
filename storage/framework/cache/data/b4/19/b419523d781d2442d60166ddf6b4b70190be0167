@@ -1,0 +1,14 @@
+9999999999O:43:"Statamic\StaticCaching\NoCache\StringRegion":4:{s:3:"key";s:40:"5dee4eef62c5ac411fc03db5b869b2c4bab32cf4";s:7:"context";a:3:{s:16:"current_template";s:10:"blog.index";s:14:"current_layout";s:11:"blog-layout";s:4:"view";a:0:{}}s:7:"content";s:1303:"{{ form:newsletter_signup }}
+                            {{ if ! success }}
+                                {{ if errors }}<div class="mb-2 text-sm text-red-600">{{ errors }}{{ value }} {{ /errors }}</div>{{ /if }}
+                                <div class="flex flex-col gap-2 sm:flex-row">
+                                    <input type="email" name="email" required placeholder="Email" class="flex-1 px-3 py-2.5 rounded-lg border border-gray-200 text-gray-900 text-sm focus:border-[#5956E9] focus:ring-2 focus:ring-[#5956E9]/20 outline-none">
+                                    <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
+                                    <button type="submit" class="px-5 py-2.5 bg-[#5956E9] text-white rounded-lg text-sm font-semibold hover:bg-[#4845d6]">Subscribe</button>
+                                </div>
+                                <label class="flex items-start gap-2 mt-3 text-xs text-gray-500">
+                                    <input type="checkbox" name="optin" required class="mt-0.5">
+                                    <span>I agree to receive emails and accept the privacy statement.</span>
+                                </label>
+                            {{ /if }}
+                        {{ /form:newsletter_signup }}";s:9:"extension";s:12:"antlers.html";}

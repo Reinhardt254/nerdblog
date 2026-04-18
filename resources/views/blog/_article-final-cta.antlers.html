@@ -1,24 +1,24 @@
-<section class="relative overflow-hidden rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-600 via-violet-600 to-blue-700 text-white">
-    <div class="max-w-3xl mx-auto px-6 py-12 sm:py-14 text-center">
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-3">Get expert tips in your inbox</h2>
-        <p class="text-blue-100 text-sm sm:text-base mb-8 max-w-xl mx-auto">Weekly insights for home service businesses. No spam.</p>
+<section class="p-3 text-center border-2 border-gray-200 bg-gradient-to-br from-gray-50 to-white rounded-3xl">
+    <div class="max-w-3xl px-6 py-12 mx-auto text-center sm:py-14">
+        <div class="inline-flex items-center gap-2 px-4 py-2 mb-6 text-blue-600 bg-blue-100 rounded-full"><span class="relative flex w-2 h-2"><span class="absolute inline-flex w-full h-full bg-blue-400 rounded-full opacity-75 animate-ping"></span><span class="relative inline-flex w-2 h-2 bg-blue-600 rounded-full"></span></span><span class="text-sm font-medium">Join Our Newsletter</span></div>
+        <h2 class="mb-4 text-3xl font-bold text-gray-900">Don't Miss Our Next Article</h2>
+        <p class="mb-6 font-[400] text-gray-600">Get weekly insights, case studies, and strategies delivered to your inbox. Join 10,000+ marketers.</p>
         {{ nocache }}
         {{ form:newsletter_signup }}
             {{ if success }}
-                <p class="text-white font-medium">{{ success }}</p>
+                <p class="font-medium text-white">{{ success }}</p>
             {{ else }}
                 {{ if errors }}
                     <div class="mb-4 text-sm text-red-200">{{ errors }}{{ value }}<br>{{ /errors }}</div>
                 {{ /if }}
-                <div class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-                    <input type="email" name="email" required placeholder="Your email" class="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/60">
-                    <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
-                    <button type="submit" class="px-6 py-3 rounded-lg bg-gray-900 hover:bg-black font-semibold text-sm transition-colors">Subscribe</button>
+                <div class="max-w-md mx-auto">
+                    <div class="flex gap-3">
+                        <input type="email" name="email" required placeholder="Your email address" class="flex-1 px-6 py-3 text-gray-900 bg-white border border-gray-300 rounded-full outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 placeholder:text-gray-400">
+                        <input type="text" class="hidden" name="{{ honeypot ?? 'honeypot' }}">
+                        <button type="submit" class="px-8 py-3 font-medium text-white transition-all rounded-full bg-gradient-to-r from-blue-600 to-violet-600 hover:shadow-lg hover:shadow-blue-500/25 whitespace-nowrap">Subscribe</button>
+                    </div>
+                    <p class="mt-3 text-sm text-gray-500">No spam. Unsubscribe anytime.</p>
                 </div>
-                <label class="mt-4 flex items-start justify-center gap-2 text-xs text-blue-100 text-left max-w-md mx-auto">
-                    <input type="checkbox" name="optin" required class="mt-0.5 shrink-0">
-                    <span>I agree to receive newsletters and accept the privacy statement.</span>
-                </label>
             {{ /if }}
         {{ /form:newsletter_signup }}
         {{ /nocache }}
