@@ -72,6 +72,7 @@ return [
 
         'cache' => false,
         'cache_path' => storage_path('app/glide_cache'),
+        'cache_disk' => 'public',
 
         /*
         |--------------------------------------------------------------------------
