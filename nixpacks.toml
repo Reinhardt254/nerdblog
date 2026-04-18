@@ -1,28 +1,29 @@
 [phases.setup]
-nixPkgs = ["php84", "php84Extensions.mbstring", "php84Extensions.xml", "php84Extensions.curl", "php84Extensions.zip", "php84Extensions.gd", "php84Extensions.pdo", "php84Extensions.fileinfo", "php84Extensions.exif", "php84Extensions.openssl", "php84Packages.composer", "nodejs_22", "nginx"]
+nixPkgs = ["php84", "php84Extensions.mbstring", "php84Extensions.xml", "php84Extensions.curl", "php84Extensions.zip", "php84Extensions.gd", "php84Extensions.pdo", "php84Packages.composer", "nodejs_22"]
 
 [phases.install]
-cmds = ["rm -f package-lock.json", "composer install --optimize-autoloader --no-dev", "npm install"]
+cmds = ["composer install --optimize-autoloader --no-dev", "npm install"]
 
 [phases.build]
 cmds = [
+    "cp .env.production .env",
     "npm run build",
     "mkdir -p storage/framework/{sessions,views,cache,testing} storage/logs bootstrap/cache",
-    "mkdir -p storage/app/glide_cache",
-    "mkdir -p storage/statamic/glide",
-    "chmod -R a+rw storage",
+    "mkdir -p storage/app/public",
+    "mkdir -p storage/statamic",
+    "chmod -R 777 storage",
+    "chmod -R 777 bootstrap/cache",
+    "chmod +x railway-start.sh",
     "touch database/database.sqlite",
     "php artisan migrate --force",
     "php artisan storage:link",
     "cd vendor/statamic/cms && npm install && npm run build && cd /app",
     "php artisan statamic:install",
-    "php artisan statamic:assets:generate-presets",
-    "php artisan statamic:stache:clear",
-    "php artisan cache:clear",
+    "php artisan statamic:stache:warm",
     "php artisan config:cache",
     "php artisan route:cache",
     "php artisan view:cache"
 ]
 
 [start]
-cmd = "mkdir -p storage/app/glide_cache storage/statamic/glide storage/framework/cache && chmod -R a+rw storage && php artisan statamic:stache:warm && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"
+cmd = "chmod +x railway-start.sh && ./railway-start.sh"
