@@ -12,6 +12,7 @@ cmds = [
     "touch database/database.sqlite",
     "php artisan migrate --force",
     "php artisan storage:link",
+    "cd vendor/statamic/cms && npm install && npm run build && cd /app",
     "php artisan statamic:install",
     "php artisan statamic:assets:generate-presets",
     "php artisan config:cache",
