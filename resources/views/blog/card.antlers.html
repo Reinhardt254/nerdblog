@@ -1,7 +1,9 @@
 <a href="{{ url }}" class="flex flex-col h-full overflow-hidden transition-all bg-white border border-gray-200 group rounded-2xl hover:shadow-xl hover:border-blue-200">
     <div class="relative overflow-hidden aspect-[16/10]">
         {{ if hero_image }}
-            <img src="{{ glide:hero_image width="736" height="460" fit="crop_focal" }}" alt="{{ hero_image:alt ?? title }}" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" loading="lazy">
+            <!-- <img src="{{ glide:hero_image width="736" height="460" fit="crop_focal" }}" alt="{{ hero_image:alt ?? title }}" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" loading="lazy"> -->
+
+            <img src="{{ hero_image }}" alt="{{ hero_image:alt ?? title }}" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" loading="lazy">
         {{ else }}
             <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200"></div>
         {{ /if }}

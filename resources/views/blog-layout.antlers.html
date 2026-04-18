@@ -36,10 +36,12 @@
             gtag('js', new Date());
             gtag('config', 'G-0W6E5DNXN3');
         </script>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-        <script src="{{ mix src='/js/site.js' }}"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="{{ mix src='/js/site.js' }}"></script> -->
+
+        {{ vite src="resources/css/tailwind.css|resources/js/site.js" preload }}
     </head>
-    <body class="min-h-screen bg-white text-gray-900 font-body leading-normal">
+    <body class="min-h-screen leading-normal text-gray-900 bg-white font-body">
         {{ partial:blog/nav }}
         <main>
             {{ $template_content }}

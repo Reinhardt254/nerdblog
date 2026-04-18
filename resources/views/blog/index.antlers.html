@@ -86,7 +86,9 @@
                     {{ if $first }}
                         <a href="{{ url }}" class="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 min-h-[300px] md:min-h-[460px] flex flex-col justify-end p-8 md:p-10 hover:shadow-2xl transition-shadow">
                             {{ if hero_image }}
-                                <img src="{{ glide:hero_image width="1200" height="800" fit="crop_focal" }}" alt="{{ hero_image:alt ?? title }}" class="absolute inset-0 object-cover w-full h-full transition-all duration-700 opacity-40 group-hover:opacity-50 group-hover:scale-105" loading="lazy">
+                                <!-- <img src="{{ glide:hero_image width="1200" height="800" fit="crop_focal" }}" alt="{{ hero_image:alt ?? title }}" class="absolute inset-0 object-cover w-full h-full transition-all duration-700 opacity-40 group-hover:opacity-50 group-hover:scale-105" loading="lazy"> -->
+
+                                <img src="{{ hero_image }}" alt="{{ hero_image:alt ?? title }}" class="absolute inset-0 w-full h-full transition-all duration-700 object-co ver opacity-40 group-hover:opacity-50 group-hover:scale-105" loading="lazy">
                             {{ /if }}
                             <div class="relative z-10 space-y-3">
                                 <span class="inline-block px-3 py-1 text-xs font-medium text-white rounded-full bg-blue-500/90">Featured</span>
@@ -97,7 +99,9 @@
                     {{ else }}
                         <a href="{{ url }}" class="flex flex-col h-full p-6 transition-all border border-gray-200 group rounded-3xl bg-gradient-to-br from-blue-50 to-violet-50 hover:shadow-xl hover:border-blue-200">
                             {{ if hero_image }}
-                                <img src="{{ glide:hero_image width="800" height="400" fit="crop_focal" }}" alt="{{ hero_image:alt ?? title }}" class="w-full h-44 object-cover rounded-2xl mb-4 group-hover:scale-[1.02] transition-transform" loading="lazy">
+                                <!-- <img src="{{ glide:hero_image width="640" height="400" fit="crop_focal" }}" alt="{{ hero_image:alt ?? title }}" class="w-full h-44 object-cover rounded-2xl mb-4 group-hover:scale-[1.02] transition-transform" loading="lazy"> -->
+
+                                <img src="{{ hero_image }}" alt="{{ hero_image:alt ?? title }}" class="w-full h-44 object-cover rounded-2xl mb-4 group-hover:scale-[1.02] transition-transform" loading="lazy">
                             {{ /if }}
                             <h3 class="text-lg font-semibold text-gray-900 group-hover:text-blue-600">{{ title }}</h3>
                             <p class="mt-2 text-sm text-gray-600 line-clamp-2">{{ excerpt ?? intro | strip_tags | truncate:120 }}</p>

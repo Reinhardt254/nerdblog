@@ -31,8 +31,9 @@
             gtag('config', 'G-0W6E5DNXN3');
         </script>
         
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-        <script src="{{ mix src='/js/site.js' }}"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+        <script src="{{ mix src='/js/site.js' }}"></!----   > -->
+        {{ vite src="resources/css/tailwind.css|resources/js/site.js" preload }}
     </head>
     <body class="bg-[#11131C] text-white font-body leading-normal personality-{{ $settings:personality }}">
         {{ partial:nav }}
