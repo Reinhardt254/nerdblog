@@ -70,9 +70,8 @@ return [
         // 'cache' => false,
         // 'cache_path' => public_path('img'),
 
-        'cache' => false,
-        'cache_path' => storage_path('app/glide_cache'),
-        'cache_disk' => 'public',
+        'cache' => true,
+        'cache_path' => public_path('img'),
 
         /*
         |--------------------------------------------------------------------------
