@@ -16,6 +16,8 @@ cmds = [
     "cd vendor/statamic/cms && npm install && npm run build && cd /app",
     "php artisan statamic:install",
     "php artisan statamic:assets:generate-presets",
+    "php artisan statamic:stache:clear",
+    "php artisan cache:clear",
     "php artisan config:cache",
     "php artisan route:cache",
     "php artisan view:cache"
