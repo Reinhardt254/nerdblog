@@ -2,7 +2,7 @@
 nixPkgs = ["php84", "php84Extensions.mbstring", "php84Extensions.xml", "php84Extensions.curl", "php84Extensions.zip", "php84Extensions.gd", "php84Extensions.pdo", "php84Packages.composer", "nodejs"]
 
 [phases.install]
-cmds = ["composer install --optimize-autoloader --no-dev", "npm install"]
+cmds = ["composer install --optimize-autoloader --no-dev", "npm install", "npm install laravel-mix@latest --save-dev"]
 
 [phases.build]
 cmds = [
